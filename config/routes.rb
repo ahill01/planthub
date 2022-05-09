@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :plant_types
+  resources :plant_categories
   resources :waterings
   resources :plants
   resources :users

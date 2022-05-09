@@ -1,0 +1,2 @@
+class PlantCategory < ApplicationRecord
+end

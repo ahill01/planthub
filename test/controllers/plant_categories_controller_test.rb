@@ -1,6 +1,6 @@
 require "test_helper"
 
-class PlantTypeTest < ActiveSupport::TestCase
+class PlantCategoriesControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
