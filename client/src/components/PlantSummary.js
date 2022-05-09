@@ -11,3 +11,5 @@ function PlantSummary({plant}){
         </div>
     )
 }
+
+export default PlantSummary;
