@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  species: MyString
+  plant_type: one
+  name: MyString
+  planted_date: 2022-05-09 10:00:45
+  user: one
+  outside: false
+  picture: MyString
+
+two:
+  species: MyString
+  plant_type: two
+  name: MyString
+  planted_date: 2022-05-09 10:00:45
+  user: two
+  outside: false
+  picture: MyString
