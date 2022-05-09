@@ -14,3 +14,4 @@ PlantCategory.create(category:"Foliage",water_amount:1,water_frequency:7,sun_nee
 
 PlantCategory.create(category:"Vegetable/Fruit",water_amount:1,water_frequency:7,sun_needs:"Full Sun")
 
+User.create(fname:"Test", lname:"User",username:"TestUser",password:"password")
