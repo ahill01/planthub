@@ -10,20 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_09_151038) do
-  create_table "plant_types", force: :cascade do |t|
-    t.string "type"
+ActiveRecord::Schema[7.0].define(version: 2022_05_09_164311) do
+  create_table "plant_categories", force: :cascade do |t|
+    t.string "category"
     t.integer "water_frequency"
     t.integer "water_amount"
     t.string "sun_needs"
-    t.string "type_examples"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "plants", force: :cascade do |t|
-    t.string "species"
-    t.integer "plant_type_id", null: false
+    t.string "plant_type"
+    t.integer "plant_category_id", null: false
     t.string "name"
     t.datetime "planted_date"
     t.integer "user_id", null: false
@@ -31,7 +30,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_09_151038) do
     t.string "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["plant_type_id"], name: "index_plants_on_plant_type_id"
+    t.index ["plant_category_id"], name: "index_plants_on_plant_category_id"
     t.index ["user_id"], name: "index_plants_on_user_id"
   end
 
@@ -51,7 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_09_151038) do
     t.index ["plant_id"], name: "index_waterings_on_plant_id"
   end
 
-  add_foreign_key "plants", "plant_types"
+  add_foreign_key "plants", "plant_categories"
   add_foreign_key "plants", "users"
   add_foreign_key "waterings", "plants"
 end
