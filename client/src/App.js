@@ -10,8 +10,7 @@ import NewPlantForm from "./components/NewPlantForm"
 export default function App() {
   return (
     <Router>
-    <Link to="/all-about-plants">All About Plants</Link>
-    <Link to="/">Home</Link>
+      <Navbar />
       <Routes>
         <Route path="/" element={<AllAboutPlants />} />
         <Route path="/navbar" element={<Navbar />} />
