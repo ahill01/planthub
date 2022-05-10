@@ -10,13 +10,13 @@ import UserProfile from "./components/UserProfile";
 
 export default function App() {
 const [userPlants, setUserPlants] = useState([])
-
+const [currentUser, setCurrentUser] = useState({})
 useEffect(() => {
   fetch('/users') 
   .then(res => res.json())
   .then(user => {
-    console.log(user)
-    setUserPlants(user.plants)
+    setCurrentUser(user[0])
+    setUserPlants(user[0].plants)
   })
 },[])
 

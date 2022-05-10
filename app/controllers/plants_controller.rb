@@ -9,17 +9,17 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     end
   
     def show
-        plants = Plants.find(params[:id])
-        render json: plants
+        plant = Plant.find(params[:id])
+        render json: plant
     end
   
     def update
-        plants = Plants.find(params[:id])
+        plants = Plant.find(params[:id])
         render json: plants 
     end
   
     def destroy
-        plants = Plants.find(params[:id])
+        plants = Plant.find(params[:id])
         plants.destroy
         render status: 200
     end

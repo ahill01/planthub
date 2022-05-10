@@ -28,3 +28,10 @@ Plant.create(name:"Jerry",planted_date:Time.now(),outside:true,plant_category_id
 Plant.create(name:"Susan",planted_date:Time.now(),outside:false,plant_category_id:3,picture:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzGdg_w1li92i1NvvuDwGhqK93f28zWpMRBLr_m7GMH0QgXldNhQZ7dHJ2cGy--sGYBg0&usqp=CAU",plant_type:"houseplant",user_id:1)
 
 Plant.create(name:"Trinity",planted_date:Time.now(),outside:false,plant_category_id:4,picture:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzGdg_w1li92i1NvvuDwGhqK93f28zWpMRBLr_m7GMH0QgXldNhQZ7dHJ2cGy--sGYBg0&usqp=CAU",plant_type:"waterlily",user_id:1)
+
+puts("Seeding Waterings")
+
+Watering.create(plant_id:1)
+Watering.create(plant_id:2)
+Watering.create(plant_id:3)
+Watering.create(plant_id:4)
