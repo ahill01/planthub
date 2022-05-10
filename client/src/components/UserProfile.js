@@ -1,14 +1,15 @@
 //list of plants, w/ summaries
 import React from 'react'
-
-function UserProfile({user}){
+import PlantSummary from "./PlantSummary"
+function UserProfile({plants}){
 
 
     return(
         <div clasName="summary">
-        user.plants.map((plant) => {
+            <h1>USER PROFILE</h1>
+        {/* {plants.map((plant) => {
             <PlantSummary plant={plant}/>
-        })
+        })} */}
         </div>
     )
 }

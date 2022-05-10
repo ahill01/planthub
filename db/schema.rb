@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_09_164311) do
   end
 
   create_table "plants", force: :cascade do |t|
-    t.string "type"
+    t.string "plant_type"
     t.integer "plant_category_id", null: false
     t.string "name"
     t.datetime "planted_date"
