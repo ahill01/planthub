@@ -23,6 +23,12 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
         plants.destroy
         render status: 200
     end
+
+    def show_waterings
+        waterings = Plant.find(params[:id]).waterings
+
+        render json: waterings, status: 200
+    end
   
     private
     def render_not_found_response

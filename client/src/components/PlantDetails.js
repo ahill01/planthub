@@ -1,15 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 function PlantDetails({plant}){
+const [waterings, setWaterings] = useState([])
 
     useEffect(()=>{
-    fetch(`/plants/${plant.id}`)
-    .then(res => res.json)
-    .then(resPlant=> console.log(plant.waterings)) 
+    fetch(`/plants/${plant.id}/waterings`)
+    .then(res => res.json())
+    .then(this_waterings=> {
+     setWaterings(this_waterings)
+    }) 
 },[])
 
     function waterPlant(){
-        debugger;
     console.log(`watering ${plant.name}`)
      fetch('/waterings', 
      {method: 'POST',
@@ -19,7 +21,7 @@ function PlantDetails({plant}){
       body: JSON.stringify({plant_id: plant.id})
     })
     .then(res => res.json())
-    .then(watering => console.log(watering))
+    .then(new_watering => setWaterings(waterings => [...waterings,new_watering]))
     }
     
 
@@ -27,8 +29,8 @@ function PlantDetails({plant}){
         <div className="summary">
             <img src={plant.picture}></img>
             <h1>{plant.name}</h1>
-            <h2>{`Waterings: ${plant.waterings}`}</h2>
-            <button onClick={waterPlant}>water me!</button>
+            <button onClick={waterPlant}>Water</button>
+            {waterings.map(watering => <h2>${watering.created_at}</h2>)}
         </div>
     )
 }
