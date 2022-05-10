@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_09_164311) do
   end
 
   create_table "plants", force: :cascade do |t|
-    t.string "plant_type"
+    t.string "type"
     t.integer "plant_category_id", null: false
     t.string "name"
     t.datetime "planted_date"
@@ -36,7 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_09_164311) do
 
   create_table "users", force: :cascade do |t|
     t.string "username"
-    t.string "password"
+    t.string "password_digest"
     t.string "fname"
     t.string "lname"
     t.datetime "created_at", null: false
