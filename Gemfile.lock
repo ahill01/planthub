@@ -71,6 +71,7 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    bcrypt (3.1.17)
     bootsnap (1.11.1)
       msgpack (~> 1.2)
     builder (3.2.4)
@@ -153,6 +154,7 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    rb-readline (0.5.5)
     reline (0.3.1)
       io-console (~> 0.5)
     sqlite3 (1.4.2)
@@ -172,10 +174,12 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.10.12)
+  bcrypt (~> 3.1.7)
   bootsnap
   debug
   puma (~> 5.0)
   rails (~> 7.0.2, >= 7.0.2.4)
+  rb-readline
   sqlite3 (~> 1.4)
   tzinfo-data
 
