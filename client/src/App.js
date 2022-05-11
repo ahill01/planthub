@@ -1,10 +1,10 @@
 import React from "react";
-import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import './App.css';
-import AllAboutPlants from "./components/AllAboutPlants";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 import Navbar from "./components/Navbar"
-import NewUserForm from "./components/NewUserForm"
-import NewPlantForm from "./components/NewPlantForm"
+import PlantForm from "./components/PlantForm"
 
 
 export default function App() {
@@ -12,10 +12,10 @@ export default function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<AllAboutPlants />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/sign-up" element={<Signup />} />
         <Route path="/navbar" element={<Navbar />} />
-        <Route path="/new-user-form" element={<NewUserForm />} />
-        <Route path="/new-plant-form" element={<NewPlantForm />} />
+        <Route path="/create-plant" element={<PlantForm />} />
       </Routes>
     </Router>
   );

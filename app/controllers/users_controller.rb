@@ -3,27 +3,28 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_resp
 
     def create
         user = User.create!(user_param)
+        login!
         render json: user, status: :created 
     end
         
     def index
-        user = User.all
-        render json: user
+        users = User.all
+        render json: users
     end
   
     def show
-        user = User.find(params[:id])
-        render json: user 
+        users = User.find(params[:id])
+        render json: users 
     end
   
     def update
-        user = User.find(params[:id])
-        render json: user
+        users = User.find(params[:id])
+        render json: users
     end
   
     def destroy
-        user = User.find(params[:id])
-        user.destroy
+        users = User.find(params[:id])
+        users.destroy
         render json: user, status: 200
     end
   
