@@ -1,16 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function PlantForm(){
     const [name, setName] = useState('');
     const [plantType, setPlantType] = useState('');
     const [image, setImage] = useState('');
     const [selectedOption, setSelectedOption] = useState({});
+    const [categories, setCategories] = useState([]);
 
     function handleSubmit(e){
         e.preventDefault();
         console.log("i was clicked");
     }
 
+    useEffect(() => {fetch('/categories')
+    .then(res => res.json)
+    .then(json => setCategories(json))},[])
+    
     return(
         <div className='plantForm'>
         <h1>PlantHub</h1>
@@ -20,6 +25,11 @@ function PlantForm(){
                          Name:
                             <input type='text' value={name} onChange={(e) => setName(e.target.value)}  />
                      </label>
+
+                     <select onChange={(e) => setCategories(e.target.value)}>
+                        {categories.map((category) => <option value = {category.id}>{category.name}</option>)}
+                    </select>
+
                      <label>
                          Plant Type:
                             <input type='text' placeholder='Scientific or Common Name' value={plantType} onChange={(e) => setPlantType(e.target.value)} />
@@ -29,13 +39,13 @@ function PlantForm(){
                             <input 
                                 type='radio'
                                 value="Indoor"
-                                checked={selectedOption === "Indoor"} />
+                               />
                      </label>
                      <label>
                             <input 
                                 type='radio'
                                 value="Outdoor"
-                                checked={selectedOption === "Outdoor"} />
+                                 />
                      </label>
                      <label>
                          Image:
