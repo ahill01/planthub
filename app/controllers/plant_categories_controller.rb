@@ -1,8 +1,8 @@
 class PlantCategoriesController < ApplicationController
 
     def index
-        plant_cat = PlantCategory.all
-        render json: plant_cat
+        plant_cats = PlantCategory.all
+        render json: plant_cats
     end
   
     def show

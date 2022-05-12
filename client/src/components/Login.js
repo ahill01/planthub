@@ -1,13 +1,16 @@
-import React, { useState } from "react";
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 
+<<<<<<< HEAD
 function Login({setCurrentUser, setUserPlants}) {
+=======
+function Login({ onLogin }) {
+>>>>>>> valencia-day4
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [errors, setErrors] = useState([]);
   
-
     function handleSubmit(e){
         e.preventDefault();
 
@@ -15,24 +18,32 @@ function Login({setCurrentUser, setUserPlants}) {
             username: username,
             password
         }
+
         fetch('/login', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(user) 
+            body: JSON.stringify({user}) 
        })
        .then(res=> res.json())
+<<<<<<< HEAD
        .then(user => {
            console.log(user)
            setCurrentUser(user)
            if(user.errors) {setErrors(user.errors)}
        })  
     }
+=======
+       .then((user) => onLogin(user), console.log("hello"))
+    };
+
+    let navigate = useNavigate();
+>>>>>>> valencia-day4
 
     return (
         <div className='login'>
-            <h1>PlantHub</h1>
-                <form onSubmit={handleSubmit}>
-                     <h2>Log into your account</h2>
+            <h1 id='loginTitle'>PlantHub</h1>
+                <form onSubmit={handleSubmit} onClick={() => {navigate('/profile')}}>
+                     <h2 id='loginSubtitle'>Log into your account</h2>
                      <label>
                          Username:
                          <input type='username' value={username} onChange={(e) => setUsername(e.target.value)} autoFocus />
@@ -47,7 +58,7 @@ function Login({setCurrentUser, setUserPlants}) {
             <div>
                 <h4>Don't have an account?</h4>
                     <Link to="/Sign-up">
-                        <button type="button">Sign Up</button>
+                        <button className='signUpButton'type="button">Sign Up</button>
                     </Link>
             </div>
         </div>

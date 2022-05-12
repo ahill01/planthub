@@ -11,20 +11,19 @@ import UserProfile from "./components/UserProfile";
 export default function App() {
 const [currentUser, setCurrentUser] = useState({})
 
-// useEffect(() => {
-//   fetch('/users') 
-//   .then(res => res.json())
-//   .then(user => {
-//     setCurrentUser(user[0])
-//     setUserPlants(user[0].plants)
-//   })
-// },[])
+useEffect(() => {
+  fetch("/me").then((response) => {
+    if (response.ok) {
+      response.json().then((currentUser) => setCurrentUser(currentUser));
+    }
+  });
+}, []);
 
   return (
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Login setCurrentUser={setCurrentUser}/>} />
+        <Route path="/" element={<Login onLogin={setCurrentUser} />} />
         <Route path="/sign-up" element={<Signup />} />
         <Route path="/profile" element={<UserProfile currentUser={currentUser} />} />
         <Route path="/create-plant" element={<PlantForm />} />

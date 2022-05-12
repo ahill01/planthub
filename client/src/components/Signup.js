@@ -27,7 +27,7 @@ function Signup(){
 
     return(
         <div className='signup'>
-        <h1>PlantHub</h1>
+        <h1 id='signupTitle'>PlantHub</h1>
                 <form onSubmit={handleSubmit}>
                      <h2>Create an account</h2>
                      <label>
@@ -46,7 +46,7 @@ function Signup(){
                          Password:
                          <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
                      </label>
-                     <label>
+                     <label id='confirmPw'>
                          Confirm Password:
                          <input type='password' value={confirmPw} onChange={(e) => setConfirmPw(e.target.value)} />
                      </label>
