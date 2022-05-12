@@ -1,8 +1,6 @@
 class PlantsController < ApplicationController
 rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
-
-
     def index
         plants = Plant.all
         render json: plants
@@ -19,9 +17,9 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     end
   
     def destroy
-        plants = Plant.find(params[:id])
-        plants.destroy
-        render status: 200
+        plant = Plant.find(params[:id])
+        plant.destroy
+        render json: plant, status: 200
     end
 
     def show_waterings

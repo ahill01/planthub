@@ -27,19 +27,19 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_resp
     end
 
     def update
-        users = User.find(params[:id])
-        render json: users
+        user = User.find(params[:id])
+        render json: user
     end
   
     def destroy
-        users = User.find(params[:id])
-        users.destroy
+        user = User.find(params[:id])
+        user.destroy
         render json: user, status: 200
     end
   
     private
     def user_param
-        params.permit(:username, :password, :password_confirmation, :fname, :lname)
+        params.permit(:username, :password, :fname, :lname)
     end
 
     def render_unprocessable_entity_response(exception)

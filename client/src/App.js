@@ -11,14 +11,6 @@ import UserProfile from "./components/UserProfile";
 export default function App() {
 const [currentUser, setCurrentUser] = useState({})
 
-useEffect(() => {
-  fetch("/me").then((response) => {
-    if (response.ok) {
-      response.json().then((currentUser) => setCurrentUser(currentUser));
-    }
-  });
-}, []);
-
   return (
     <Router>
       <Navbar />
