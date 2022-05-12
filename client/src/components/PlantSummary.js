@@ -3,7 +3,7 @@ import React from 'react'
 import PlantDetails from "./PlantDetails";
 
 function PlantSummary({plant, setUserPlants}){
-    const [displaySummary, setDisplaySummary] = useState(true)
+const [displaySummary, setDisplaySummary]=useState(true)
 
     function handleClick(){
         console.log("clicked")
@@ -11,15 +11,14 @@ function PlantSummary({plant, setUserPlants}){
     }
 
     return(
-    <div className="plantInfo" onClick={handleClick}>
-    {displaySummary ?
-        (<div className={plant.thirsty ? "summary thirsty": "summary notThirsty"}>
+    <div className="plantInfo">
+        <div className={plant.thirsty ? "summary thirsty": "summary notThirsty"}>
             <img className="thumb" src={plant.picture}></img>
              <h1>{plant.name}</h1>
             <h2>{plant.thirsty ? `Thirsty` : `Not Thirsty`}</h2>
-        </div>) :
-        (<PlantDetails key={plant.id} plant={plant} setUserPlants={setUserPlants}/>)
-    }
+            <button onClick={handleClick}>{displaySummary ?"Show ":"Hide "} Details</button>
+            {displaySummary ? <br></br> : (<PlantDetails key={plant.id} plant={plant} setUserPlants={setUserPlants}/>)} 
+        </div>
     </div>
     )
 }

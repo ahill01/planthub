@@ -2,10 +2,9 @@
 import React, { useEffect, useState } from 'react'
 import PlantDetails from './PlantDetails';
 import PlantSummary from "./PlantSummary"
-
+import PlantInfo from "./PlantSummary"
 function UserProfile({currentUser}){
     const [userPlants, setUserPlants] = useState([])
-
     useEffect(() => {
         fetch(`/users/${currentUser.id}/plants`)
         .then(res => res.json())
@@ -18,10 +17,7 @@ function UserProfile({currentUser}){
     return(
         <div className="summary">
         <h1>USER PROFILE</h1>
-       {userPlants.map((plant) => <PlantSummary key={plant.id} plant={plant} setUserPlants={setUserPlants}/>
-        )} 
-        {/* {userPlants.map((plant) => <PlantDetails key={plant.id} plant={plant} setUserPlants={setUserPlants}/>
-        )} */}
+        {userPlants.map((plant) =><PlantSummary key={plant.id} plant={plant} setUserPlants={setUserPlants}/>)}
         </div>
     )
 }

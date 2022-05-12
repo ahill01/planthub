@@ -41,11 +41,12 @@ useEffect(()=>{setWaterings(plant.waterings)},[])
 
     return(
         <div className="details">
-            <img className="details" src={plant.picture}></img>
-            <h1>{plant.name}</h1>
-            <button onClick={waterPlant}>Water</button>
-            {waterings.map(watering => <h2>{watering.formatted_time}</h2>)}
-            <button onClick={deletePlant}>Delete Plant</button>
+            <button onClick={waterPlant}>💧 Water Plant</button>
+            <button onClick={deletePlant}>❌ Delete Plant</button>
+            <button>✏️ Edit Plant</button>
+            <h2>Waterings</h2>
+            {waterings.map(watering => <h3>{watering.formatted_time}</h3>)}
+         
         </div>
     )
 }
