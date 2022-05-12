@@ -39,13 +39,13 @@ function PlantForm(){
                             <input 
                                 type='radio'
                                 value="Indoor"
-                               />
+                            />
                      </label>
                      <label>
                             <input 
                                 type='radio'
                                 value="Outdoor"
-                                 />
+                            />
                      </label>
                      <label>
                          Image:

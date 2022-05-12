@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :user, only: [:create, :show, :index]
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+  # get '/me', to: 'users#show'
+
   # get '/logged_in', to: 'sessions#is_logged_in?'
  
 

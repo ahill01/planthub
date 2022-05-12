@@ -11,6 +11,7 @@ import UserProfile from "./components/UserProfile";
 export default function App() {
 const [userPlants, setUserPlants] = useState([])
 const [currentUser, setCurrentUser] = useState({})
+
 useEffect(() => {
   fetch('/users') 
   .then(res => res.json())
@@ -20,11 +21,19 @@ useEffect(() => {
   })
 },[])
 
+useEffect(() => {
+  fetch("/me").then((response) => {
+    if (response.ok) {
+      response.json().then((currentUser) => setCurrentUser(currentUser));
+    }
+  });
+}, []);
+
   return (
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Login onLogin={setCurrentUser} />} />
         <Route path="/sign-up" element={<Signup />} />
         <Route path="/profile" element={<UserProfile plants={userPlants} />} />
         <Route path="/navbar" element={<Navbar />} />

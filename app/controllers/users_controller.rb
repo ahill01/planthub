@@ -13,8 +13,12 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_resp
     end
   
     def show
-        user = User.find(params[:id])
-        render json: user, status: :ok 
+        user = User.find_by(id: session[:user_id])
+        if user
+            render json: user 
+        else
+            render json: { error: "Not authorized" }, status: :unauthorized
+        end
     end
   
     def update

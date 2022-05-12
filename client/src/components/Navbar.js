@@ -1,11 +1,20 @@
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 
-function Navbar(){
+function Navbar({ onLogout }){
+
+    function handleLogout() {
+        fetch("/logout", {
+            method: "DELETE",
+            }).then(() => onLogout());
+        }
 
     // return(
-    //     <div>
+    //     <div>   
+    //         <header>
+    //             <button onClick={handleLogout}>Logout</button>
+    //         </header>
+         
     //         <Link to="/all-about-plants">All About Plants</Link>
-    //         <Link to="/">Home</Link>
     //     </div>
     // )
 };
