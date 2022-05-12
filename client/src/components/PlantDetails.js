@@ -23,6 +23,21 @@ const [waterings, setWaterings] = useState([])
     .then(res => res.json())
     .then(new_watering => setWaterings(waterings => [...waterings,new_watering]))
     }
+
+    function deletePlant(){
+        console.log(`deleting ${plant.name}`)
+        fetch(`/plants/${plant.id}`,{
+                method:'DELETE',
+                headers: {
+                  'Content-Type':'application/json',
+                }}
+                )
+        .then(res => res.json)
+        .then((resBack) => {
+            console.log(resBack)
+            alert(`${plant.name} deleted`)
+        })
+    }
     
 
     return(
@@ -30,7 +45,8 @@ const [waterings, setWaterings] = useState([])
             <img src={plant.picture}></img>
             <h1>{plant.name}</h1>
             <button onClick={waterPlant}>Water</button>
-            {waterings.map(watering => <h2>${watering.created_at}</h2>)}
+            {waterings.map(watering => <h2>{watering.created_at}</h2>)}
+            <button onClick={deletePlant}>Delete Plant</button>
         </div>
     )
 }

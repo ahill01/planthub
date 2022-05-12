@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from 'react-router-dom'
 
 
-function Login() {
+function Login({setCurrentUser, setUserPlants}) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
@@ -21,9 +21,10 @@ function Login() {
             body: JSON.stringify(user) 
        })
        .then(res=> res.json())
-       .then(json => {
-           console.log(json)
-           if(json.errors) setErrors(json.errors)
+       .then(user => {
+           console.log(user)
+           setCurrentUser(user)
+           if(user.errors) {setErrors(user.errors)}
        })  
     }
 

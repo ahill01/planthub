@@ -9,6 +9,7 @@ Rails.application.routes.draw do
  
 
   get '/plants/:id/waterings', to: 'plants#show_waterings'
+  get '/users/:id/plants', to: 'users#show_plants'
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

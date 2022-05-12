@@ -17,6 +17,11 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_resp
         render json: user, status: :ok 
     end
   
+    def show_plants
+        user = User.find(params[:id])
+        render json: user.plants, status: :ok
+    end
+
     def update
         users = User.find(params[:id])
         render json: users
