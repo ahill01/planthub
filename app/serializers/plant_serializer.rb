@@ -1,10 +1,6 @@
 class PlantSerializer < ActiveModel::Serializer
 attributes :id, :name, :plant_type, :outside, :picture, :last_watered, :next_watering, :thirsty
 
-  def last_month_waterings_only
-      # self.object.waterings.
-  end
-
   def last_watered
     last_watered_date = self.object.waterings.last.created_at
     return last_watered_date.to_fs

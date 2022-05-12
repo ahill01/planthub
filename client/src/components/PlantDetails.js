@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react'
 function PlantDetails({plant,setUserPlants}){
 const [waterings, setWaterings] = useState([])
 
-useEffect(()=>{setWaterings(plant.waterings)},[])
-
     function waterPlant(){
     console.log(`watering ${plant.name}`)
     console.log(waterings)
@@ -17,10 +15,8 @@ useEffect(()=>{setWaterings(plant.waterings)},[])
     })
     .then(res => res.json())
     .then(newWatering => {
-        console.log(newWatering)
         const newWaterings = [...waterings, newWatering]
        setWaterings(newWaterings)
-        console.log(waterings)
         }) 
     }
 
@@ -41,11 +37,17 @@ useEffect(()=>{setWaterings(plant.waterings)},[])
 
     return(
         <div className="details">
+            <h2>{`${plant.name} the ${plant.plant_type}`}</h2>
             <button onClick={waterPlant}>💧 Water Plant</button>
+            <button>{plant.outside ? "🪴 Move Inside": "🪴 Move Outside"}</button>
             <button onClick={deletePlant}>❌ Delete Plant</button>
             <button>✏️ Edit Plant</button>
-            <h2>Waterings</h2>
-            {waterings.map(watering => <h3>{watering.formatted_time}</h3>)}
+            <h2>Last Watered:</h2>
+            <h3>{plant.last_watered}</h3>
+            <h2>Next Watering:</h2>
+            <h3>{plant.next_watering}</h3>
+            {/* <h2>Waterings</h2>
+            {waterings.map(watering => <h3>{watering.formatted_time}</h3>)} */}
          
         </div>
     )

@@ -1,8 +1,7 @@
 //list of plants, w/ summaries
 import React, { useEffect, useState } from 'react'
-import PlantDetails from './PlantDetails';
 import PlantSummary from "./PlantSummary"
-import PlantInfo from "./PlantSummary"
+
 function UserProfile({currentUser}){
     const [userPlants, setUserPlants] = useState([])
     useEffect(() => {
