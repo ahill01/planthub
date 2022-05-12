@@ -31,23 +31,42 @@ code {
   margin: 20px;
 }
 
-#loginTitle, #signupTitle{
+.plantForm{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background-color:#9E9FAE;
+  border: 10px dashed #9FAE9E ;
+  color: white;
+  border-radius: 10px;
+  max-width: 100%;
+  max-height: 100%;
+  padding: 20px;
+  text-align: center;
+  margin: 20px;
+
+}
+
+#loginTitle, #signupTitle, .plantFormTitle{
   font-size: 100px;
 }
 
-.login form label, .signup form label{
+.login form label, .signup form label, .plantForm form label{
   margin: 15px;
   display: block;
 }
 
-.login form input, .signup form input{
+.login form input, .signup form input, .plantForm form input{
   margin-left: 5px;
   padding: 4px;
   width: 15%;
   border: 3px solid #9FAE9E;
   border-radius: 4px;
 }
-.loginButton, .signupButton{
+.loginButton, .signupButton, .addPlantButton{
   background-color: #9FAE9E;
   border: none;
   color: white;
@@ -55,7 +74,7 @@ code {
   cursor: pointer;
   margin-bottom: 25px;
 }
-.loginButton:hover, .signupButton:hover{
+.loginButton:hover, .signupButton:hover, .addPlantButton:hover{
   background-color: #8a9889;
 }
 .signUpButton{
@@ -70,5 +89,3 @@ code {
   background-color: #747797;
 }
 
-#confirmPw{
-}

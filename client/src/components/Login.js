@@ -2,12 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
 
-
-<<<<<<< HEAD
-function Login({setCurrentUser, setUserPlants}) {
-=======
 function Login({ onLogin }) {
->>>>>>> valencia-day4
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
   
@@ -25,24 +20,16 @@ function Login({ onLogin }) {
             body: JSON.stringify({user}) 
        })
        .then(res=> res.json())
-<<<<<<< HEAD
-       .then(user => {
-           console.log(user)
-           setCurrentUser(user)
-           if(user.errors) {setErrors(user.errors)}
-       })  
+       .then((user) => {onLogin(user)
+         navigate('/profile')})
     }
-=======
-       .then((user) => onLogin(user), console.log("hello"))
-    };
 
     let navigate = useNavigate();
->>>>>>> valencia-day4
 
     return (
         <div className='login'>
             <h1 id='loginTitle'>PlantHub</h1>
-                <form onSubmit={handleSubmit} onClick={() => {navigate('/profile')}}>
+                <form onSubmit={handleSubmit} >
                      <h2 id='loginSubtitle'>Log into your account</h2>
                      <label>
                          Username:
@@ -64,6 +51,6 @@ function Login({ onLogin }) {
         </div>
         
     )
-}
+    }
 
 export default Login; 

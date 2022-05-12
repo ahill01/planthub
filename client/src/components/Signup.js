@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+// import { useNavigate } from "react-router-dom";
 
 function Signup(){
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPw, setConfirmPw] = useState('');
+    
 
     function handleSubmit(e){
         e.preventDefault();
@@ -14,6 +15,7 @@ function Signup(){
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Accept': 'application/json'
                 },
             body: JSON.stringify({
                 fname: firstName, 
@@ -21,9 +23,13 @@ function Signup(){
                 username: username,
                 password: password
             })
-        })}
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+        e.target.reset()
+    }
     
-    
+    // let navigate = useNavigate();
 
     return(
         <div className='signup'>
@@ -44,11 +50,8 @@ function Signup(){
                      </label>
                      <label>
                          Password:
-                         <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
-                     </label>
-                     <label id='confirmPw'>
-                         Confirm Password:
-                         <input type='password' value={confirmPw} onChange={(e) => setConfirmPw(e.target.value)} />
+                         <input type='password' value={password} onChange={(e) =>{ 
+                             setPassword(e.target.value)}}/>
                      </label>
             
                      <button className='signupButton'>Sign Up</button>
