@@ -26,8 +26,8 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_resp
     end
 
     def update
-        users = User.find(params[:id])
-        render json: users
+        user = User.find(params[:id])
+        render json: user
     end
   
     def destroy

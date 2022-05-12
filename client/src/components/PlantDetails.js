@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from 'react'
 
-function PlantDetails({plant}){
+function PlantDetails({plant,setUserPlants}){
 const [waterings, setWaterings] = useState([])
-
-    useEffect(()=>{
-    fetch(`/plants/${plant.id}/waterings`)
-    .then(res => res.json())
-    .then(this_waterings=> {
-     setWaterings(this_waterings)
-    }) 
-},[])
 
     function waterPlant(){
     console.log(`watering ${plant.name}`)
+    console.log(waterings)
      fetch('/waterings', 
      {method: 'POST',
       headers: {
@@ -21,32 +14,41 @@ const [waterings, setWaterings] = useState([])
       body: JSON.stringify({plant_id: plant.id})
     })
     .then(res => res.json())
-    .then(new_watering => setWaterings(waterings => [...waterings,new_watering]))
+    .then(newWatering => {
+        const newWaterings = [...waterings, newWatering]
+       setWaterings(newWaterings)
+        }) 
     }
 
     function deletePlant(){
         console.log(`deleting ${plant.name}`)
         fetch(`/plants/${plant.id}`,{
-                method:'DELETE',
-                headers: {
-                  'Content-Type':'application/json',
-                }}
+                method:'DELETE'}
                 )
-        .then(res => res.json)
-        .then((resBack) => {
-            console.log(resBack)
+        .then(res => res.json())
+        .then((deletedPlant) => {
+            console.log(deletedPlant)
+            setUserPlants((plants)=> plants.filter(plant => plant.id !== deletedPlant.id))
+            setWaterings([])
             alert(`${plant.name} deleted`)
         })
     }
     
 
     return(
-        <div className="summary">
-            <img src={plant.picture}></img>
-            <h1>{plant.name}</h1>
-            <button onClick={waterPlant}>Water</button>
-            {waterings.map(watering => <h2>{watering.created_at}</h2>)}
-            <button onClick={deletePlant}>Delete Plant</button>
+        <div className="details">
+            <h2>{`${plant.name} the ${plant.plant_type}`}</h2>
+            <button onClick={waterPlant}>💧 Water Plant</button>
+            <button>{plant.outside ? "🪴 Move Inside": "🪴 Move Outside"}</button>
+            <button onClick={deletePlant}>❌ Delete Plant</button>
+            <button>✏️ Edit Plant</button>
+            <h2>Last Watered:</h2>
+            <h3>{plant.last_watered}</h3>
+            <h2>Next Watering:</h2>
+            <h3>{plant.next_watering}</h3>
+            {/* <h2>Waterings</h2>
+            {waterings.map(watering => <h3>{watering.formatted_time}</h3>)} */}
+         
         </div>
     )
 }

@@ -9,7 +9,7 @@ import UserProfile from "./components/UserProfile";
 
 
 export default function App() {
-const [currentUser, setCurrentUser] = useState([])
+const [currentUser, setCurrentUser] = useState({})
 
   return (
     <Router>

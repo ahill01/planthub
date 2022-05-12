@@ -89,3 +89,36 @@ code {
   background-color: #747797;
 }
 
+.summary {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  gap: 10px 50px;
+  justify-content: center;
+  align-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  row-gap: 10px;
+}
+.thirsty {
+  background-color: #9E9FAE;
+}
+
+.notThirsty{
+  background-color: lightgreen;
+}
+.details {
+background-color:beige;
+
+}
+
+img.details{
+  max-width: 400px;
+  max-height: 400px;
+}
+.thumb {
+max-width: 250px;
+max-height: 250px;
+}
+
+
