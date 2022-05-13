@@ -2,7 +2,7 @@ import { useState } from "react";
 import React from 'react'
 import PlantDetails from "./PlantDetails";
 
-function PlantSummary({plant, setUserPlants}){
+function PlantSummary({plant, setUserPlants,setWaterings}){
 const [displaySummary, setDisplaySummary]=useState(true)
 
     function handleClick(){
@@ -17,7 +17,7 @@ const [displaySummary, setDisplaySummary]=useState(true)
              <h1>{plant.name}</h1>
             <h2>{plant.thirsty ? `Thirsty` : `Not Thirsty`}</h2>
             <button onClick={handleClick}>{displaySummary ?"Show ":"Hide "} Details</button>
-            {displaySummary ? <br></br> : (<PlantDetails key={plant.id} plant={plant} setUserPlants={setUserPlants}/>)} 
+            {displaySummary ? <br></br> : (<PlantDetails key={plant.id} plant={plant} setUserPlants={setUserPlants} setWaterings={setWaterings}/>)} 
         </div>
     </div>
     )

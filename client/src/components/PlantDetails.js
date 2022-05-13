@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 
-function PlantDetails({plant,setUserPlants}){
-const [waterings, setWaterings] = useState([])
+function PlantDetails({plant,setUserPlants,setWaterings}){
+    
 
     function waterPlant(){
     console.log(`watering ${plant.name}`)
-    console.log(waterings)
      fetch('/waterings', 
      {method: 'POST',
       headers: {
@@ -15,8 +14,7 @@ const [waterings, setWaterings] = useState([])
     })
     .then(res => res.json())
     .then(newWatering => {
-        const newWaterings = [...waterings, newWatering]
-       setWaterings(newWaterings)
+       setWaterings(prevState => [...prevState, newWatering])
         }) 
     }
 
