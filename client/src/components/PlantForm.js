@@ -4,7 +4,7 @@ function PlantForm({currentUser, setCurrentUser}){
 
     const [newPlant, setNewPlant] = useState({
         name: "",
-        plant_category: '',
+        plant_category_id:1,
         plant_type: "",
         outside: true,
         picture: "",
@@ -12,13 +12,13 @@ function PlantForm({currentUser, setCurrentUser}){
       })
 
       function handleChange(e) {
-          debugger
+        //   debugger
         if (e.target.type === "checkbox") {
             setNewPlant({...newPlant, outside: e.target.value})
       } else if( e.target.type === 'select') {
         setNewPlant({...newPlant, ['plant_category']: parseInt(e.target.value)})
-      } else { const newPlantObj = {...newPlant, [e.target.name]:e.target.value}
-        setNewPlant(newPlantObj)}
+      } else { 
+        setNewPlant({...newPlant, [e.target.name]:e.target.value})}
     }
 
     // function handleNameChange(e){
@@ -26,19 +26,20 @@ function PlantForm({currentUser, setCurrentUser}){
     //   }
 
     function handleSubmit(e){
-        
         e.preventDefault();
 
         fetch("/plants", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-                Accept: 'application/json'
+                'Accept': 'application/json'
              },
             body: JSON.stringify(newPlant)
-                }).then(res => res.json())
+                })
+                .then(res => res.json())
                 .then(newItem => alert(`Added ${newItem.name} the ${newItem.plant_type} to your profile :)`))
             e.target.reset();
+
     }
 
     // useEffect(() => {fetch('/plant_categories')
@@ -68,7 +69,7 @@ function PlantForm({currentUser, setCurrentUser}){
 
                      <label>
                          Plant Type:
-                            <input type='text' placeholder='Common Name' value={newPlant.plant_type} onChange={handleChange} />
+                            <input type='text' placeholder='Common Name' name="plant_type" value={newPlant.plant_type} onChange={handleChange} />
                      </label>
                         Environment:
                             <label htmlFor="Indoor"> Indoor </label><br/>
@@ -80,7 +81,7 @@ function PlantForm({currentUser, setCurrentUser}){
                      </label>
                      <label>
                          Image:
-                            <input type='text' value={newPlant.picture} onChange={handleChange} />
+                            <input type='text' name="picture" value={newPlant.picture} onChange={handleChange} />
                      </label>
                      {}
                      <button className='addPlantButton'>Add Plant</button>

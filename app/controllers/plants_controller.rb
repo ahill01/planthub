@@ -2,8 +2,8 @@ class PlantsController < ApplicationController
 rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def create
-        plant = Plants.create!(plant_params)
-        render json: plant.Plant, status: :created
+        plant = Plant.create!(plant_params)
+        render json: plant, status: :created
     end
 
     def index
@@ -35,7 +35,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
   
     private
     def plant_params
-        params.permit(:name, :plant_type, :plant_category_id, :user_id, :outside, :picture)
+        params.require(:plant).permit(:name, :plant_type, :plant_category_id, :user_id, :outside, :picture)
     end
 
     def render_not_found_response

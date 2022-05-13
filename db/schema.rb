@@ -24,7 +24,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_09_164311) do
     t.string "plant_type"
     t.integer "plant_category_id", null: false
     t.string "name"
-    t.datetime "planted_date"
     t.integer "user_id", null: false
     t.boolean "outside"
     t.string "picture"
