@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import Navbar from "./Navbar";
 
 function Edit({currentUser, setCurrentUser, editPlant, setEditPlantntUser}){
+let navigate = useNavigate()
 
     const [updatedPlant, setUpdatedPlant] = useState({
         name: editPlant.name,
@@ -36,7 +38,9 @@ function Edit({currentUser, setCurrentUser, editPlant, setEditPlantntUser}){
             body: JSON.stringify(updatedPlant)
                 })
                 .then(res => res.json())
-                .then(newItem => alert(`${newItem.name} the ${newItem.plant_type} has been updated :)`))
+                .then(newItem => {
+                    alert(`${newItem.name} the ${newItem.plant_type} has been updated :)`)
+                    navigate(`/profile`)})
             e.target.reset();
     }
     

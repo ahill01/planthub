@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function PlantDetails({plant,setUserPlants, editPlant, setEditPlant,setWaterings}){
-const [waterings, setWaterings] = useState([])
 
     function waterPlant(){
     console.log(`watering ${plant.name}`)

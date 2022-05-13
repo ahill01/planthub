@@ -15,7 +15,7 @@ function Navbar({ onLogout,currentUser }){
             <Link className="navLink" to="/profile">Profile</Link>
             <Link className="navLink"  to="/create-plant">New Plant</Link>
             <Link className="navLink" to="/edit-plant">Edit Plant</Link>
-            <p>{currentUser.id !== undefined ? `welcome to Planthub, ${currentUser.fname}`: null}</p>
+            <p>{currentUser !== undefined ? `welcome to Planthub, ${currentUser.fname}`: null}</p>
         </div>
     )
 };
