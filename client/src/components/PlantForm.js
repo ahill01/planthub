@@ -3,33 +3,33 @@ import React, { useState, useEffect } from "react";
 function PlantForm({currentUser, setCurrentUser}){
 
     const [newPlant, setNewPlant] = useState({
-        nick_name: "",
-        category_of_plant: '',
+        name: "",
+        plant_category: '',
         plant_type: "",
-        environment: '',
-        image: "",
-        plants_to_add: []
+        outside: true,
+        picture: "",
+        user_id: currentUser.id
       })
 
       function handleChange(e) {
-        if (e.target.type !== "checkbox") {
-            setNewPlant({...newPlant, [e.target.environment]: e.target.value})
-        } else {
-          const plantArr = []   
-          document.querySelectorAll("input[type=checkbox]").forEach(plant => plant.checked ? plantArr.push(plant.name) : null)
-          setNewPlant({...newPlant, plants_to_add: [...plantArr]})
-        }
-      }
+          debugger
+        if (e.target.type === "checkbox") {
+            setNewPlant({...newPlant, outside: e.target.value})
+      } else if( e.target.type === 'select') {
+        setNewPlant({...newPlant, ['plant_category']: parseInt(e.target.value)})
+      } else { const newPlantObj = {...newPlant, [e.target.name]:e.target.value}
+        setNewPlant(newPlantObj)}
+    }
 
-    // function handleChange(e){
+    // function handleNameChange(e){
     //     setSelectedOption({value: e.target.value});
     //   }
 
     function handleSubmit(e){
-        // alert('Added ' + nick_name + ' the ' + plantType + ' to your profile :)');
+        
         e.preventDefault();
 
-        fetch("/create-plant", {
+        fetch("/plants", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -37,14 +37,13 @@ function PlantForm({currentUser, setCurrentUser}){
              },
             body: JSON.stringify(newPlant)
                 }).then(res => res.json())
-                .then(newItem => setCurrentUser([...currentUser, newItem]))
-                    console.log(newPlant)
+                .then(newItem => alert(`Added ${newItem.name} the ${newItem.plant_type} to your profile :)`))
             e.target.reset();
     }
 
-    useEffect(() => {fetch('/plant_categories')
-    .then(res => res.json())
-    .then(jsonData => setCategories(jsonData))},[])
+    // useEffect(() => {fetch('/plant_categories')
+    // .then(res => res.json())
+    // .then(jsonData => setCategories(jsonData))},[])
     
     return(
         <div className='plantForm'>
@@ -53,35 +52,35 @@ function PlantForm({currentUser, setCurrentUser}){
             <h2>Add a new plant</h2>
                      <label>
                          Name:
-                            <input type='text' value={nick_name} name="nick_name" onChange={(e) => setNewPlant(e.target.value)}  />
+                            <input type='text' value={newPlant.name} name="name" onChange={handleChange}  />
                      </label>
                     <label>
                         Category of Plant:
-                        <select value={setNewPlant} onChange={handleChange}>
+                        <select name='plant_category' value={newPlant.plant_category} onChange={handleChange}>
                         {/* {categories.map((category) => <option value = {category.id}>{category.name}</option>)} */}
-                        <option value="Herbs">Herbs</option>
-                        <option value="Cacti">Cacti</option>
-                        <option value="Flowering">Flowering</option>
-                        <option value="Foliage">Foliage</option>
-                        <option value="Vegetable/Fruit">Vegetable/Fruit</option>
+                        <option value='1'>Herbs</option>
+                        <option value='2'>Cacti</option>
+                        <option value='3'>Flowering</option>
+                        <option value='4'>Foliage</option>
+                        <option value='5'>Vegetable/Fruit</option>
                     </select>
                     </label>
 
                      <label>
                          Plant Type:
-                            <input type='text' placeholder='Common Name' value={plantType} onChange={(e) => setPlantType(e.target.value)} />
+                            <input type='text' placeholder='Common Name' value={newPlant.plant_type} onChange={handleChange} />
                      </label>
                         Environment:
                             <label htmlFor="Indoor"> Indoor </label><br/>
-                                <input className='form-checkbox' type="checkbox" id="Indoor" name="Indoor" value="Indoor" />
+                                <input className='form-checkbox' type="checkbox" id="Indoor" name="Indoor" value={false} />
                         <label htmlFor="Outdoor"> Outdoor </label><br/>
-                            <input className='form-checkbox' type="checkbox" id="Outdoor" name="Outdoor" value="Outdoor" />
+                            <input className='form-checkbox' type="checkbox" id="Outdoor" name="Outdoor" value={true} />
                      <label>
                             
                      </label>
                      <label>
                          Image:
-                            <input type='text' value={image} onChange={(e) => setNewPlant(e.target.value)} />
+                            <input type='text' value={newPlant.picture} onChange={handleChange} />
                      </label>
                      {}
                      <button className='addPlantButton'>Add Plant</button>
