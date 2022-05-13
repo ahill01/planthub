@@ -38,7 +38,7 @@ function PlantForm({currentUser, setCurrentUser}){
             body: JSON.stringify(newPlant)
                 })
                 .then(res => res.json())
-                .then(newItem => alert(`newItem.name} the ${newItem.plant_type} to your profile :)`))
+                .then(newItem => alert(`${newItem.name} the ${newItem.plant_type} to your profile :)`))
             e.target.reset();
 
 
