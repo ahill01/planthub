@@ -62,18 +62,18 @@ function PlantDetails({plant,setUserPlants, setEditPlant,setWaterings}){
     return(
         <div className="details">
             <h2>{`${plant.name} the ${plant.plant_type}`}</h2>
-            <button onClick={waterPlant}>💧 Water Plant</button>
-            <button onClick={moveOutside}>{plant.outside ? "🪴 Move Inside": "🪴 Move Outside"}</button>
-            <button onClick={deletePlant}>❌ Delete Plant</button>
-            <button onClick={handleEditClick}>✏️ Edit Plant</button>
-            <h2>Last Watered:</h2>
-            <h3>{plant.last_watered}</h3>
-            <h2>Next Watering:</h2>
-            <h3>{`${plant.plant_category.water_amount}" on ${plant.next_watering}`}</h3>
-            <h2>Likes:</h2>
-            <h3>{plant.plant_category.sun_needs}</h3>
-            <h2>Category:</h2>
-            <h3>{plant.plant_category.category}</h3>
+            <button className="details" onClick={waterPlant}>💧 Water Plant</button>
+            <button className="details" onClick={moveOutside}>{plant.outside ? "🪴 Move Inside": "🪴 Move Outside"}</button>
+            <button className="details" onClick={deletePlant}>❌ Delete Plant</button>
+            <button className="details" onClick={handleEditClick}>✏️ Edit Plant</button>
+            <h3>Last Watered:</h3>
+            <p>{plant.last_watered}</p>
+            <h3>Next Watering:</h3>
+            <p>{`${plant.plant_category.water_amount}" on ${plant.next_watering}`}</p>
+            <h3>Likes:</h3>
+            <p>{plant.plant_category.sun_needs}</p>
+            <h3>Category:</h3>
+            <p>{plant.plant_category.category}</p>
             {/* <h2>Waterings</h2>
             {waterings.map(watering => <h3>{watering.formatted_time}</h3>)} */}
          

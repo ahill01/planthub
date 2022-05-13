@@ -65,10 +65,10 @@ function PlantForm({currentUser, categories}){
                          Plant Type:
                             <input name='plant_type' type='text' placeholder='Common Name' value={newPlant.plant_type} onChange={handleChange} />
                      </label>
-                        Environment:
-                            <label htmlFor="Indoor"> Indoor </label><br/>
+                        Environment: 
+                        <label className='form-checkbox' htmlFor="Indoor"> Indoor </label>
                                 <input className='form-checkbox' type="checkbox" id="Indoor" name="Indoor" value={false} onChange={handleChange}/>
-                        <label htmlFor="Outdoor"> Outdoor </label><br/>
+                        <label className='form-checkbox' htmlFor="Outdoor"> Outdoor </label>
                             <input className='form-checkbox' type="checkbox" id="Outdoor" name="Outdoor" value={true} onChange={handleChange}/>
                      <label>
                             

@@ -67,9 +67,9 @@ let navigate = useNavigate()
                             <input name='plant_type' type='text' placeholder='Common Name' value={updatedPlant.plant_type} onChange={handleChange} />
                      </label>
                         Edit Environment:
-                            <label htmlFor="Indoor"> Indoor </label><br/>
+                            <label htmlFor="Indoor"> Indoor </label>
                                 <input className='form-checkbox' type="checkbox" id="Indoor" name="Indoor" value={false} />
-                        <label htmlFor="Outdoor"> Outdoor </label><br/>
+                        <label htmlFor="Outdoor"> Outdoor </label>
                             <input className='form-checkbox' type="checkbox" id="Outdoor" name="Outdoor" value={true} />
                      <label>
                             
