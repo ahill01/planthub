@@ -69,7 +69,11 @@ function PlantDetails({plant,setUserPlants, setEditPlant,setWaterings}){
             <h2>Last Watered:</h2>
             <h3>{plant.last_watered}</h3>
             <h2>Next Watering:</h2>
-            <h3>{plant.next_watering}</h3>
+            <h3>{`${plant.plant_category.water_amount}" on ${plant.next_watering}`}</h3>
+            <h2>Likes:</h2>
+            <h3>{plant.plant_category.sun_needs}</h3>
+            <h2>Category:</h2>
+            <h3>{plant.plant_category.category}</h3>
             {/* <h2>Waterings</h2>
             {waterings.map(watering => <h3>{watering.formatted_time}</h3>)} */}
          

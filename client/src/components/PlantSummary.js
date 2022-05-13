@@ -2,7 +2,7 @@ import { useState } from "react";
 import React from 'react'
 import PlantDetails from "./PlantDetails";
 
-function PlantSummary({plant, setUserPlants, editPlant, setEditPlant, setWaterings}){
+function PlantSummary({plant, setUserPlants, setEditPlant, setWaterings}){
 const [displaySummary, setDisplaySummary]=useState(true)
 
     function handleClick(){

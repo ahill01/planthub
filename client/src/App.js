@@ -23,7 +23,7 @@ useEffect(() => {fetch('/plant_categories')
       <Navbar currentUser={currentUser} setCurrentUser={setCurrentUser}/>
       <Routes>
         <Route path="/" element={<Login setCurrentUser={setCurrentUser} />} />
-        <Route path="/sign-up" element={<Signup />} />
+        <Route path="/sign-up" element={<Signup setCurrentUser={setCurrentUser}/>} />
         <Route path="/profile" element={<UserProfile currentUser={currentUser} setEditPlant={setEditPlant} editPlant={editPlant} />} />
         <Route path="/create-plant" element={<PlantForm currentUser={currentUser} categories={categories} />} />
         <Route path="/edit-plant" element={<Edit currentUser={currentUser} editPlant={editPlant} categories={categories}/>} />

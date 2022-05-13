@@ -16,8 +16,9 @@ function UserProfile({currentUser, editPlant, setEditPlant}){
 
     return(
         <div className="summary">
-        <h1 className="summary">USER PROFILE</h1>
-        {userPlants.map((plant) =><PlantSummary key={plant.id} plant={plant} setUserPlants={setUserPlants} editPlant={editPlant} setEditPlant={setEditPlant} setWaterings={setWaterings} />)}
+        <h1 className="summary">{currentUser.id !== undefined ? `${currentUser.fname}'s Plants` : "USER PROFILE"}</h1>
+       <h2>{userPlants[0]===undefined ? "It looks like you don't have any plants yet! Click `New Plant` to get started!":""}</h2> 
+        {userPlants.map((plant) =><PlantSummary key={plant.id} plant={plant} setUserPlants={setUserPlants} setEditPlant={setEditPlant} setWaterings={setWaterings} />)}
         </div>
     )
 }

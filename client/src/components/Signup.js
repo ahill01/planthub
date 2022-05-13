@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Signup(){
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    
+    let navigate = useNavigate()
 
     function handleSubmit(e){
         e.preventDefault();
@@ -25,11 +25,13 @@ function Signup(){
             })
         })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+            alert('account successfully cretaed, please sign in!')
+            navigate(`/`)
+
+        })
         e.target.reset()
     }
-    
-    // let navigate = useNavigate();
 
     return(
         <div className='signup'>
