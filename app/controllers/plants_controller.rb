@@ -17,9 +17,11 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     end
   
     def update
-        plant = Plant.find(params[:id])
-        plant.update(plant_params)
-        render json: plant, status: :ok
+        plant = Plant.find_by(id:params[:id])
+        if plant then
+            plant.update(plant_params)
+            render json: plant, status: :ok
+        end
     end
   
     def destroy

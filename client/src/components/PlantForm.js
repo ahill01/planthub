@@ -71,7 +71,7 @@ function PlantForm({currentUser, setCurrentUser}){
 
                      <label>
                          Plant Type:
-                            <input type='text' placeholder='Common Name' name="plant_type" value={newPlant.plant_type} onChange={handleChange} />
+                            <input name='plant_type' type='text' placeholder='Common Name' value={newPlant.plant_type} onChange={handleChange} />
                      </label>
                         Environment:
                             <label htmlFor="Indoor"> Indoor </label><br/>
@@ -83,7 +83,7 @@ function PlantForm({currentUser, setCurrentUser}){
                      </label>
                      <label>
                          Image:
-                            <input type='text' name="picture" value={newPlant.picture} onChange={handleChange} />
+                            <input name='picture' type='text' value={newPlant.picture} onChange={handleChange} />
                      </label>
                      {}
                      <button className='addPlantButton'>Add Plant</button>

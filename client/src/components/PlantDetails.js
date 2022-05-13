@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-function PlantDetails({plant,setUserPlants,setWaterings}){
-    
+function PlantDetails({plant,setUserPlants, editPlant, setEditPlant,setWaterings}){
+const [waterings, setWaterings] = useState([])
 
     function waterPlant(){
     console.log(`watering ${plant.name}`)
@@ -32,10 +33,6 @@ function PlantDetails({plant,setUserPlants,setWaterings}){
         })
     }
 
-    function editPlant(){
-
-    }
-
     function updateRenderedPlant (plantArray, updatedPlant) {
         const copyPlantArr = [...plantArray]
       const index = copyPlantArr.findIndex(element => element.id === updatedPlant.id)
@@ -57,13 +54,22 @@ function PlantDetails({plant,setUserPlants,setWaterings}){
         })
 }
 
+    function handleClick(){
+        setEditPlant(plant) 
+        navigate('/edit-plant')
+    }
+    
+    let navigate = useNavigate();
+
+        
+
     return(
         <div className="details">
             <h2>{`${plant.name} the ${plant.plant_type}`}</h2>
             <button onClick={waterPlant}>💧 Water Plant</button>
             <button onClick={moveOutside}>{plant.outside ? "🪴 Move Inside": "🪴 Move Outside"}</button>
             <button onClick={deletePlant}>❌ Delete Plant</button>
-            <button>✏️ Edit Plant</button>
+            <button onClick={handleClick}>✏️ Edit Plant</button>
             <h2>Last Watered:</h2>
             <h3>{plant.last_watered}</h3>
             <h2>Next Watering:</h2>
