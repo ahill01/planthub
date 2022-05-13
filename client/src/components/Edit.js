@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
+import Navbar from "./Navbar";
 
-function PlantForm({currentUser, setCurrentUser}){
+function Edit({currentUser, setCurrentUser, editPlant, setEditPlantntUser}){
 
-    const [newPlant, setNewPlant] = useState({
-        name: "",
-        plant_category: '',
-        plant_type: "",
-        outside: true,
-        picture: "",
+    const [updatedPlant, setUpdatedPlant] = useState({
+        name: editPlant.name,
+        plant_category: editPlant.plant_category,
+        plant_type: editPlant.plant_type,
+        outside: editPlant.outside,
+        picture: editPlant.picture,
         user_id: currentUser.id
       })
 
@@ -15,51 +16,43 @@ function PlantForm({currentUser, setCurrentUser}){
         if (e.target.type === "checkbox") {
             let outsideBoolean = true
             if(e.target.value === "false") {outsideBoolean = false}
-            setNewPlant({...newPlant, outside: outsideBoolean})
+            setUpdatedPlant({...updatedPlant, outside: outsideBoolean})
       } else if( e.target.type === 'select') {
-        setNewPlant({...newPlant, ['plant_category']: parseInt(e.target.value)})
+        setUpdatedPlant({...updatedPlant, ['plant_category']: parseInt(e.target.value)})
       } else { 
-        setNewPlant({...newPlant, [e.target.name]:e.target.value})}
+        setUpdatedPlant({...updatedPlant, [e.target.name]:e.target.value})}
     }
-
-    // function handleNameChange(e){
-    //     setSelectedOption({value: e.target.value});
-    //   }
 
     function handleSubmit(e){
         
         e.preventDefault();
 
-        fetch("/plants", {
-            method: "POST",
+        fetch(`/plants/${editPlant.id}`, {
+            method: "PATCH",
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json'
              },
-            body: JSON.stringify(newPlant)
+            body: JSON.stringify(updatedPlant)
                 })
                 .then(res => res.json())
-                .then(newItem => alert(`${newItem.name} the ${newItem.plant_type} to your profile :)`))
+                .then(newItem => alert(`${newItem.name} the ${newItem.plant_type} has been updated :)`))
             e.target.reset();
     }
-
-    // useEffect(() => {fetch('/plant_categories')
-    // .then(res => res.json())
-    // .then(jsonData => setCategories(jsonData))},[])
     
     return(
         <div className='plantForm'>
+        <Navbar />
         <h1 className="plantFormTitle">PlantHub</h1>
         <form onSubmit={handleSubmit}>
-            <h2>Add a new plant</h2>
+            <h2>Edit your plant</h2>
                      <label>
-                         Name:
-                            <input type='text' value={newPlant.name} name="name" onChange={handleChange}  />
+                         Edit Name:
+                            <input type='text' value={updatedPlant.name} name="name" onChange={handleChange}  />
                      </label>
                     <label>
-                        Category of Plant:
-                        <select name='plant_category' value={newPlant.plant_category} onChange={handleChange}>
-                        {/* {categories.map((category) => <option value = {category.id}>{category.name}</option>)} */}
+                        Edit Category of Plant:
+                        <select name='plant_category' value={updatedPlant.plant_category} onChange={handleChange}>
                         <option value='1'>Herbs</option>
                         <option value='2'>Cacti</option>
                         <option value='3'>Flowering</option>
@@ -69,10 +62,10 @@ function PlantForm({currentUser, setCurrentUser}){
                     </label>
 
                      <label>
-                         Plant Type:
-                            <input name='plant_type' type='text' placeholder='Common Name' value={newPlant.plant_type} onChange={handleChange} />
+                         Edit Plant Type:
+                            <input name='plant_type' type='text' placeholder='Common Name' value={updatedPlant.plant_type} onChange={handleChange} />
                      </label>
-                        Environment:
+                        Edit Environment:
                             <label htmlFor="Indoor"> Indoor </label><br/>
                                 <input className='form-checkbox' type="checkbox" id="Indoor" name="Indoor" value={false} />
                         <label htmlFor="Outdoor"> Outdoor </label><br/>
@@ -81,8 +74,8 @@ function PlantForm({currentUser, setCurrentUser}){
                             
                      </label>
                      <label>
-                         Image:
-                            <input name='picture' type='text' value={newPlant.picture} onChange={handleChange} />
+                         Edit Image:
+                            <input name='picture' type='text' value={updatedPlant.picture} onChange={handleChange} />
                      </label>
                      {}
                      <button className='addPlantButton'>Add Plant</button>
@@ -91,4 +84,4 @@ function PlantForm({currentUser, setCurrentUser}){
     )
 };
 
-export default PlantForm;
+export default Edit;

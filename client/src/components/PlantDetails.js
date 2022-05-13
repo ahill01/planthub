@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-function PlantDetails({plant,setUserPlants}){
+function PlantDetails({plant,setUserPlants, editPlant, setEditPlant}){
 const [waterings, setWaterings] = useState([])
 
     function waterPlant(){
@@ -33,13 +34,15 @@ const [waterings, setWaterings] = useState([])
             alert(`${plant.name} deleted`)
         })
     }
+
+
+    function handleClick(){
+        setEditPlant(plant) 
+        navigate('/edit-plant')
+    }
     
-    function updatePlant(){
-        fetch(`/plants/${plant.id}`, {
-            method:'PATCH',
-            headers: {'Content-Type': 'application/json'}
-        })
-    } 
+    let navigate = useNavigate();
+
         
 
     return(
@@ -48,7 +51,7 @@ const [waterings, setWaterings] = useState([])
             <button onClick={waterPlant}>💧 Water Plant</button>
             <button>{plant.outside ? "🪴 Move Inside": "🪴 Move Outside"}</button>
             <button onClick={deletePlant}>❌ Delete Plant</button>
-            <button onClick={updatePlant}>✏️ Edit Plant</button>
+            <button onClick={handleClick}>✏️ Edit Plant</button>
             <h2>Last Watered:</h2>
             <h3>{plant.last_watered}</h3>
             <h2>Next Watering:</h2>

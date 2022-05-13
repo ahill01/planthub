@@ -3,7 +3,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def create
         plant = Plant.create!(plant_params)
-        render json: plant.Plant, status: :created
+        render json: plant, status: :created
     end
 
     def index
