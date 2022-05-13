@@ -17,7 +17,7 @@ const [displaySummary, setDisplaySummary]=useState(true)
              <h1>{plant.name}</h1>
             <h2>{plant.thirsty ? `Thirsty` : `Not Thirsty`}</h2>
             <button onClick={handleClick}>{displaySummary ?"Show ":"Hide "} Details</button>
-            {displaySummary ? <br></br> : (<PlantDetails key={plant.id} plant={plant} setUserPlants={setUserPlants} editPlant={editPlant} setEditPlant={setEditPlant} setWaterings={setWaterings}/>)} 
+            {displaySummary ? <br></br> : (<PlantDetails key={plant.id} plant={plant} setUserPlants={setUserPlants} setEditPlant={setEditPlant} setWaterings={setWaterings}/>)} 
         </div>
     </div>
     )

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-function PlantDetails({plant,setUserPlants, editPlant, setEditPlant,setWaterings}){
+function PlantDetails({plant,setUserPlants, setEditPlant,setWaterings}){
+    let navigate = useNavigate();
 
     function waterPlant(){
     console.log(`watering ${plant.name}`)
@@ -53,22 +54,18 @@ function PlantDetails({plant,setUserPlants, editPlant, setEditPlant,setWaterings
         })
 }
 
-    function handleClick(){
+    function handleEditClick(){
         setEditPlant(plant) 
         navigate('/edit-plant')
     }
     
-    let navigate = useNavigate();
-
-        
-
     return(
         <div className="details">
             <h2>{`${plant.name} the ${plant.plant_type}`}</h2>
             <button onClick={waterPlant}>💧 Water Plant</button>
             <button onClick={moveOutside}>{plant.outside ? "🪴 Move Inside": "🪴 Move Outside"}</button>
             <button onClick={deletePlant}>❌ Delete Plant</button>
-            <button onClick={handleClick}>✏️ Edit Plant</button>
+            <button onClick={handleEditClick}>✏️ Edit Plant</button>
             <h2>Last Watered:</h2>
             <h3>{plant.last_watered}</h3>
             <h2>Next Watering:</h2>

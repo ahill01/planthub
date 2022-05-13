@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import Navbar from "./Navbar";
 
-function Edit({currentUser, editPlant}){
+function Edit({currentUser, editPlant, categories}){
 let navigate = useNavigate()
 
     const [updatedPlant, setUpdatedPlant] = useState({
         name: editPlant.name,
-        plant_category: editPlant.plant_category,
+        plant_category_id: editPlant.plant_category.id,
         plant_type: editPlant.plant_type,
         outside: editPlant.outside,
         picture: editPlant.picture,
@@ -20,7 +20,7 @@ let navigate = useNavigate()
             if(e.target.value === "false") {outsideBoolean = false}
             setUpdatedPlant({...updatedPlant, outside: outsideBoolean})
       } else if( e.target.type === 'select') {
-        setUpdatedPlant({...updatedPlant, ['plant_category']: parseInt(e.target.value)})
+        setUpdatedPlant({...updatedPlant, ['plant_category_id']: parseInt(e.target.value)})
       } else { 
         setUpdatedPlant({...updatedPlant, [e.target.name]:e.target.value})}
     }
@@ -39,6 +39,7 @@ let navigate = useNavigate()
                 })
                 .then(res => res.json())
                 .then(newItem => {
+                    console.log(newItem)
                     alert(`${newItem.name} the ${newItem.plant_type} has been updated :)`)
                     navigate(`/profile`)})
             e.target.reset();
@@ -46,7 +47,7 @@ let navigate = useNavigate()
     
     return(
         <div className='plantForm'>
-        <Navbar />
+        <Navbar currentUser={currentUser}/>
         <h1 className="plantFormTitle">PlantHub</h1>
         <form onSubmit={handleSubmit}>
             <h2>Edit your plant</h2>
@@ -56,12 +57,8 @@ let navigate = useNavigate()
                      </label>
                     <label>
                         Edit Category of Plant:
-                        <select name='plant_category' value={updatedPlant.plant_category} onChange={handleChange}>
-                        <option value='1'>Herbs</option>
-                        <option value='2'>Cacti</option>
-                        <option value='3'>Flowering</option>
-                        <option value='4'>Foliage</option>
-                        <option value='5'>Vegetable/Fruit</option>
+                        <select name='plant_category_id' value={updatedPlant.plant_category} onChange={handleChange}>
+                        {categories.map((category) => <option value ={category.id}>{category.category}</option>)}
                     </select>
                     </label>
 

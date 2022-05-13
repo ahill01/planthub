@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 import './App.css';
 import Login from "./components/Login";
@@ -12,6 +12,11 @@ import Edit from './components/Edit';
 export default function App() {
 const [currentUser, setCurrentUser] = useState({})
 const [editPlant, setEditPlant] = useState({})
+const [categories, setCategories] = useState([])
+
+useEffect(() => {fetch('/plant_categories')
+.then(res => res.json())
+.then(jsonData => setCategories(jsonData))},[])
 
   return (
     <Router>
@@ -20,8 +25,8 @@ const [editPlant, setEditPlant] = useState({})
         <Route path="/" element={<Login setCurrentUser={setCurrentUser} />} />
         <Route path="/sign-up" element={<Signup />} />
         <Route path="/profile" element={<UserProfile currentUser={currentUser} setEditPlant={setEditPlant} editPlant={editPlant} />} />
-        <Route path="/create-plant" element={<PlantForm setCurrentUser={setCurrentUser} currentUser={currentUser} />} />
-        <Route path="/edit-plant" element={<Edit currentUser={currentUser} editPlant={editPlant} />} />
+        <Route path="/create-plant" element={<PlantForm currentUser={currentUser} categories={categories} />} />
+        <Route path="/edit-plant" element={<Edit currentUser={currentUser} editPlant={editPlant} categories={categories}/>} />
       </Routes>
     </Router>
   );

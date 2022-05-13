@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar"
 
-function PlantForm({currentUser, setCurrentUser}){
-
+function PlantForm({currentUser, categories}){
     const [newPlant, setNewPlant] = useState({
         name: "",
         plant_category_id:1,
@@ -10,6 +11,8 @@ function PlantForm({currentUser, setCurrentUser}){
         picture: "",
         user_id: currentUser.id
       })
+
+      let navigate = useNavigate()
 
       function handleChange(e) {
         if (e.target.type === "checkbox") {
@@ -21,10 +24,6 @@ function PlantForm({currentUser, setCurrentUser}){
       } else { 
         setNewPlant({...newPlant, [e.target.name]:e.target.value})}
     }
-
-    // function handleNameChange(e){
-    //     setSelectedOption({value: e.target.value});
-    //   }
 
     function handleSubmit(e){
         e.preventDefault();
@@ -38,18 +37,16 @@ function PlantForm({currentUser, setCurrentUser}){
             body: JSON.stringify(newPlant)
                 })
                 .then(res => res.json())
-                .then(newItem => alert(`${newItem.name} the ${newItem.plant_type} to your profile :)`))
+                .then(newItem => 
+                    {alert(`${newItem.name} the ${newItem.plant_type} to your profile :)`)
+                    navigate(`/profile`)
+            })
             e.target.reset();
-
-
     }
-
-    // useEffect(() => {fetch('/plant_categories')
-    // .then(res => res.json())
-    // .then(jsonData => setCategories(jsonData))},[])
     
     return(
         <div className='plantForm'>
+        <Navbar currentUser={currentUser}/>
         <h1 className="plantFormTitle">PlantHub</h1>
         <form onSubmit={handleSubmit}>
             <h2>Add a new plant</h2>
@@ -60,12 +57,7 @@ function PlantForm({currentUser, setCurrentUser}){
                     <label>
                         Category of Plant:
                         <select name='plant_category' value={newPlant.plant_category} onChange={handleChange}>
-                        {/* {categories.map((category) => <option value = {category.id}>{category.name}</option>)} */}
-                        <option value='1'>Herbs</option>
-                        <option value='2'>Cacti</option>
-                        <option value='3'>Flowering</option>
-                        <option value='4'>Foliage</option>
-                        <option value='5'>Vegetable/Fruit</option>
+                        {categories.map((category) => <option value ={category.id}>{category.category}</option>)}
                     </select>
                     </label>
 
