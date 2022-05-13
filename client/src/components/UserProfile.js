@@ -5,7 +5,7 @@ import PlantSummary from "./PlantSummary"
 function UserProfile({currentUser}){
     const [userPlants, setUserPlants] = useState([])
     const [waterings, setWaterings] = useState([])
-    
+
     useEffect(() => {
         fetch(`/users/${currentUser.id}/plants`)
         .then(res => res.json())

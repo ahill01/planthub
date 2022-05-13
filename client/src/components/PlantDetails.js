@@ -31,13 +31,29 @@ function PlantDetails({plant,setUserPlants,setWaterings}){
             alert(`${plant.name} deleted`)
         })
     }
-    
+
+    function editPlant(){
+
+    }
+
+    function moveOutside(){
+        debugger;
+        fetch(`/plants/${plant.id}`,{
+            method:'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ outside: !plant.outside })
+        })
+        .then(res => res.json())
+        .then(updatedPlant => {
+            plant.outside = updatedPlant.outside
+           console.log(updatedPlant.outside)})
+    }
 
     return(
         <div className="details">
             <h2>{`${plant.name} the ${plant.plant_type}`}</h2>
             <button onClick={waterPlant}>💧 Water Plant</button>
-            <button>{plant.outside ? "🪴 Move Inside": "🪴 Move Outside"}</button>
+            <button onClick={moveOutside}>{plant.outside ? "🪴 Move Inside": "🪴 Move Outside"}</button>
             <button onClick={deletePlant}>❌ Delete Plant</button>
             <button>✏️ Edit Plant</button>
             <h2>Last Watered:</h2>

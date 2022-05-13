@@ -12,9 +12,10 @@ function PlantForm({currentUser, setCurrentUser}){
       })
 
       function handleChange(e) {
-        //   debugger
         if (e.target.type === "checkbox") {
-            setNewPlant({...newPlant, outside: e.target.value})
+            let outsideBoolean = true
+            if(e.target.value === "false") {outsideBoolean = false}
+            setNewPlant({...newPlant, outside: outsideBoolean})
       } else if( e.target.type === 'select') {
         setNewPlant({...newPlant, ['plant_category']: parseInt(e.target.value)})
       } else { 
@@ -39,7 +40,7 @@ function PlantForm({currentUser, setCurrentUser}){
                 .then(res => res.json())
                 .then(newItem => alert(`newItem.name} the ${newItem.plant_type} to your profile :)`))
             e.target.reset();
-            
+
 
     }
 
@@ -74,9 +75,9 @@ function PlantForm({currentUser, setCurrentUser}){
                      </label>
                         Environment:
                             <label htmlFor="Indoor"> Indoor </label><br/>
-                                <input className='form-checkbox' type="checkbox" id="Indoor" name="Indoor" value={false} />
+                                <input className='form-checkbox' type="checkbox" id="Indoor" name="Indoor" value={false} onChange={handleChange}/>
                         <label htmlFor="Outdoor"> Outdoor </label><br/>
-                            <input className='form-checkbox' type="checkbox" id="Outdoor" name="Outdoor" value={true} />
+                            <input className='form-checkbox' type="checkbox" id="Outdoor" name="Outdoor" value={true} onChange={handleChange}/>
                      <label>
                             
                      </label>
