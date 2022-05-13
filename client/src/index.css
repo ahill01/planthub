@@ -17,8 +17,8 @@ code {
   position: absolute;
   left: 0;
   right: 0;
-  top: 0;
-  bottom: 0;
+  top: 25;
+  bottom: 25;
   margin: auto;
   background-color:#9E9FAE;
   border: 10px dashed #9FAE9E ;
@@ -110,6 +110,26 @@ code {
 .details {
 background-color:beige;
 
+}
+
+.navLink{
+  background-color: #228d4f;
+  color: white;
+  padding: 14px 25px;
+  text-decoration: none;
+  display: flexbox;
+  justify-content: center;
+  align-content: space-around;
+  align-items: center;
+}
+
+p{
+  text-align: right;
+}
+
+h1.summary{
+  display: flex;
+  text-align: center;
 }
 
 img.details{

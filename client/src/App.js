@@ -13,7 +13,7 @@ const [currentUser, setCurrentUser] = useState({})
 
   return (
     <Router>
-      <Navbar />
+      <Navbar currentUser={currentUser}/>
       <Routes>
         <Route path="/" element={<Login onLogin={setCurrentUser} />} />
         <Route path="/sign-up" element={<Signup />} />

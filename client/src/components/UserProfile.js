@@ -17,7 +17,7 @@ function UserProfile({currentUser}){
 
     return(
         <div className="summary">
-        <h1>USER PROFILE</h1>
+        <h1 className="summary">USER PROFILE</h1>
         {userPlants.map((plant) =><PlantSummary key={plant.id} plant={plant} setUserPlants={setUserPlants} setWaterings={setWaterings}/>)}
         </div>
     )

@@ -1,6 +1,6 @@
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 
-function Navbar({ onLogout }){
+function Navbar({ onLogout,currentUser }){
 
     function handleLogout() {
         fetch("/logout", {
@@ -9,11 +9,12 @@ function Navbar({ onLogout }){
         }
 
     return(
-        <div>
-            <Link to="/all-about-plants">All About Plants</Link>
-            <Link to="/">Login</Link>
-            <Link to="/profile">Profile</Link>
-            <Link to="/create-plant">New Plant</Link>
+        <div className="navLink">
+            <Link className="navLink" to="/all-about-plants">All About Plants</Link>
+            <Link className="navLink" to="/">Login</Link>
+            <Link className="navLink" to="/profile">Profile</Link>
+            <Link className="navLink"  to="/create-plant">New Plant</Link>
+            <p>{currentUser.id !== undefined ? `welcome to Planthub, ${currentUser.fname}`: null}</p>
         </div>
     )
 };
