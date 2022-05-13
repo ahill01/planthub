@@ -2,7 +2,7 @@ class PlantsController < ApplicationController
 rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
     def create
-        plant = Plants.create!(plant_params)
+        plant = Plant.create!(plant_params)
         render json: plant.Plant, status: :created
     end
 
@@ -17,8 +17,11 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     end
   
     def update
-        plants = Plant.find(params[:id])
-        render json: plants 
+        plant = Plant.find_by(id:params[:id])
+        if plant then
+            plant.update(plant_params)
+            render json: plant
+        end
     end
   
     def destroy
@@ -35,7 +38,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
   
     private
     def plant_params
-        params.permit(:name, :plant_type, :plant_category_id, :user_id, :outside, :picture)
+        params.require(:plant).permit(:name, :plant_type, :plant_category_id, :user_id, :outside, :picture)
     end
 
     def render_not_found_response

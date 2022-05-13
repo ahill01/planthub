@@ -12,11 +12,10 @@ function PlantForm({currentUser, setCurrentUser}){
       })
 
       function handleChange(e) {
-          debugger
         if (e.target.type === "checkbox") {
             setNewPlant({...newPlant, outside: e.target.value})
       } else if( e.target.type === 'select') {
-        setNewPlant({...newPlant, ['plant_category']: parseInt(e.target.value)})
+        setNewPlant({...newPlant, plant_category: parseInt(e.target.value)})
       } else { const newPlantObj = {...newPlant, [e.target.name]:e.target.value}
         setNewPlant(newPlantObj)}
     }
@@ -37,7 +36,7 @@ function PlantForm({currentUser, setCurrentUser}){
              },
             body: JSON.stringify(newPlant)
                 }).then(res => res.json())
-                .then(newItem => alert(`Added ${newItem.name} the ${newItem.plant_type} to your profile :)`))
+                .then(newItem => alert('Added ' + newItem.name +  'the' + newItem.plant_type + ' to your profile :)'))
             e.target.reset();
     }
 

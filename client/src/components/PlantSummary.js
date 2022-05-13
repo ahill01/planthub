@@ -13,7 +13,7 @@ const [displaySummary, setDisplaySummary]=useState(true)
     return(
     <div className="plantInfo">
         <div className={plant.thirsty ? "summary thirsty": "summary notThirsty"}>
-            <img className="thumb" src={plant.picture}></img>
+            <img className="thumb" src={plant.picture} alt='' ></img>
              <h1>{plant.name}</h1>
             <h2>{plant.thirsty ? `Thirsty` : `Not Thirsty`}</h2>
             <button onClick={handleClick}>{displaySummary ?"Show ":"Hide "} Details</button>

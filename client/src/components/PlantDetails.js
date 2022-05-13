@@ -34,6 +34,13 @@ const [waterings, setWaterings] = useState([])
         })
     }
     
+    function updatePlant(){
+        fetch(`/plants/${plant.id}`, {
+            method:'PATCH',
+            headers: {'Content-Type': 'application/json'}
+        })
+    } 
+        
 
     return(
         <div className="details">
@@ -41,7 +48,7 @@ const [waterings, setWaterings] = useState([])
             <button onClick={waterPlant}>💧 Water Plant</button>
             <button>{plant.outside ? "🪴 Move Inside": "🪴 Move Outside"}</button>
             <button onClick={deletePlant}>❌ Delete Plant</button>
-            <button>✏️ Edit Plant</button>
+            <button onClick={updatePlant}>✏️ Edit Plant</button>
             <h2>Last Watered:</h2>
             <h3>{plant.last_watered}</h3>
             <h2>Next Watering:</h2>
