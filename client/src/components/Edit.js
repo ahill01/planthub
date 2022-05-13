@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import Navbar from "./Navbar";
 
-function Edit({currentUser, setCurrentUser, editPlant, setEditPlantntUser}){
+function Edit({currentUser, editPlant}){
 let navigate = useNavigate()
 
     const [updatedPlant, setUpdatedPlant] = useState({

@@ -2,29 +2,27 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
 
-function Login({ onLogin }) {
+function Login({ setCurrentUser }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
   
+    let navigate = useNavigate();
+
     function handleSubmit(e){
         e.preventDefault();
-
         const user = {
             username: username,
             password
         }
-
         fetch('/login', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({user}) 
        })
        .then(res=> res.json())
-       .then((user) => {onLogin(user)
+       .then((user) => {setCurrentUser(user)
          navigate('/profile')})
     }
-
-    let navigate = useNavigate();
 
     return (
         <div className='login'>
