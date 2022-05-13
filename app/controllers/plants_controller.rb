@@ -24,6 +24,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
   
     def destroy
         plant = Plant.find(params[:id])
+        plant.waterings.clear
         plant.destroy
         render json: plant, status: 200
     end

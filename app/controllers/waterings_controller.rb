@@ -6,9 +6,9 @@ class WateringsController < ApplicationController
     end
 
     def destroy
-        watering = Watering.find(params[:id])
-        watering.destroy
-        render status: 201
+        watering = Watering.find_by(id:params[:id])
+        watering.delete
+        render json: watering, status: 201
     end
 
     private
