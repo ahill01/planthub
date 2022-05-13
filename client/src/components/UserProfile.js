@@ -10,7 +10,7 @@ function UserProfile({currentUser}){
         .then(plants => {
             setUserPlants(plants)
         })
-    },[])
+    })
 
 
     return(
