@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import Navbar from "./Navbar";
 
 function Edit({currentUser, editPlant, categories}){
 let navigate = useNavigate()
@@ -47,7 +46,6 @@ let navigate = useNavigate()
     
     return(
         <div className='plantForm'>
-        <Navbar currentUser={currentUser}/>
         <h1 className="plantFormTitle">PlantHub</h1>
         <form onSubmit={handleSubmit}>
             <h2>Edit your plant</h2>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "./Navbar"
 
 function PlantForm({currentUser, categories}){
     const [newPlant, setNewPlant] = useState({
@@ -46,7 +45,6 @@ function PlantForm({currentUser, categories}){
     
     return(
         <div className='plantForm'>
-        <Navbar currentUser={currentUser}/>
         <h1 className="plantFormTitle">PlantHub</h1>
         <form onSubmit={handleSubmit}>
             <h2>Add a new plant</h2>
