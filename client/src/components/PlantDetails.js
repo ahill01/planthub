@@ -36,7 +36,7 @@ function PlantDetails({plant,setUserPlants,setWaterings}){
 
     }
 
-    function updatePlant (plantArray, updatedPlant) {
+    function updateRenderedPlant (plantArray, updatedPlant) {
         const copyPlantArr = [...plantArray]
       const index = copyPlantArr.findIndex(element => element.id === updatedPlant.id)
         copyPlantArr.splice(index,1,updatedPlant)
@@ -52,7 +52,7 @@ function PlantDetails({plant,setUserPlants,setWaterings}){
         })
         .then(res => res.json())
         .then(updatedPlant => {
-            setUserPlants(prevState => updatePlant(prevState,updatedPlant))
+            setUserPlants(prevState => updateRenderedPlant(prevState,updatedPlant))
             console.log(setUserPlants)
         })
 }

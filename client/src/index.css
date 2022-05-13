@@ -109,7 +109,11 @@ code {
 }
 .details {
 background-color:beige;
+}
 
+button{
+  background-color:#228d4f;
+  color:white;
 }
 
 .navLink{
