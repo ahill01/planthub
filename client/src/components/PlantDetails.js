@@ -36,8 +36,15 @@ function PlantDetails({plant,setUserPlants,setWaterings}){
 
     }
 
+    function updatePlant (plantArray, updatedPlant) {
+        const copyPlantArr = [...plantArray]
+      const index = copyPlantArr.findIndex(element => element.id === updatedPlant.id)
+        copyPlantArr.splice(index,1,updatedPlant)
+        console.log(copyPlantArr)
+        return copyPlantArr
+    }
+
     function moveOutside(){
-        debugger;
         fetch(`/plants/${plant.id}`,{
             method:'PATCH',
             headers: { 'Content-Type': 'application/json' },
@@ -45,9 +52,10 @@ function PlantDetails({plant,setUserPlants,setWaterings}){
         })
         .then(res => res.json())
         .then(updatedPlant => {
-            plant.outside = updatedPlant.outside
-           console.log(updatedPlant.outside)})
-    }
+            setUserPlants(prevState => updatePlant(prevState,updatedPlant))
+            console.log(setUserPlants)
+        })
+}
 
     return(
         <div className="details">
