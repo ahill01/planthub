@@ -14,7 +14,7 @@ const [currentUser, setCurrentUser] = useState({})
 const [editPlant, setEditPlant] = useState({})
 const [categories, setCategories] = useState([])
 
-useEffect(() => {fetch('/plant_categories')
+useEffect(() => {fetch(`/plant_categories`)
 .then(res => res.json())
 .then(jsonData => setCategories(jsonData))},[])
 

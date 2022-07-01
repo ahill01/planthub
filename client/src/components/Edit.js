@@ -77,7 +77,7 @@ let navigate = useNavigate()
                             <input name='picture' type='text' value={updatedPlant.picture} onChange={handleChange} />
                      </label>
                      {}
-                     <button className='addPlantButton'>Add Plant</button>
+                     <button className='addPlantButton'>Update Plant</button>
                 </form>
         </div>
     )

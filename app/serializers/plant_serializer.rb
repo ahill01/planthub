@@ -3,7 +3,7 @@ attributes :id, :name, :plant_type, :outside, :picture, :last_watered, :next_wat
 
   def last_watered
     if(self.object.waterings.last!= nil) then
-    last_watered_date = self.object.waterings.last.created_at
+    last_watered_date = self.object.waterings.last.created_at 
     return last_watered_date.to_fs
     end
     # else return nil
@@ -14,6 +14,10 @@ attributes :id, :name, :plant_type, :outside, :picture, :last_watered, :next_wat
       next_water_date = self.object.waterings.last.created_at.advance(days: object.plant_category.water_frequency)
       return next_water_date.to_fs
     end
+    if(self.object.waterings.first ==nil) then
+      return Time.now.to_fs
+    end
+
   #  else return nil
   end 
 

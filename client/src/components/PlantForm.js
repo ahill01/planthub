@@ -18,7 +18,7 @@ function PlantForm({currentUser, categories}){
             let outsideBoolean = true
             if(e.target.value === "false") {outsideBoolean = false}
             setNewPlant({...newPlant, outside: outsideBoolean})
-      } else if( e.target.type === 'select') {
+      } else if( e.target.name === 'plant_category') {
         setNewPlant({...newPlant, ['plant_category']: parseInt(e.target.value)})
       } else { 
         setNewPlant({...newPlant, [e.target.name]:e.target.value})}

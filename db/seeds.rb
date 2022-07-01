@@ -8,9 +8,7 @@ PlantCategory.create(category:"Cacti/Succulents",water_amount:4,water_frequency:
 
 PlantCategory.create(category:"Flowering",water_amount:1,water_frequency:7,sun_needs:"Partial Sun/Shade")
 
-
 PlantCategory.create(category:"Foliage",water_amount:1,water_frequency:7,sun_needs:"Full Sun")
-
 
 PlantCategory.create(category:"Vegetable/Fruit",water_amount:1,water_frequency:7,sun_needs:"Full Sun")
 

@@ -67,7 +67,7 @@ function PlantDetails({plant,setUserPlants, setEditPlant,setWaterings}){
             <button className="details" onClick={deletePlant}>❌ Delete Plant</button>
             <button className="details" onClick={handleEditClick}>✏️ Edit Plant</button>
             <h3>Last Watered:</h3>
-            <p>{plant.last_watered}</p>
+            <p>{plant.last_watered ? plant.last_watered:"no waterings yet"}</p>
             <h3>Next Watering:</h3>
             <p>{`${plant.plant_category.water_amount}" on ${plant.next_watering}`}</p>
             <h3>Likes:</h3>
